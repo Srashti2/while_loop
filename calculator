@@ -1,0 +1,61 @@
+def calculator():
+    global operator_1
+    global num1
+    global num2
+    if operator_1 == "+":
+        return (num1 + num2)
+    elif operator_1 == "-":
+        return (num1 - num2)
+    elif operator_1 == "/":
+        return (num1 / num2)
+    else:
+        return (num1 * num2) #if no operator is chosen from the given list, then by default multipication would be considered
+
+def operation():
+    global num1
+    global num2
+    while ValueError != False:
+        try: #try to put non integer values it would ask you to input valid number.
+            num1 = int (input ("what is the first number? "))
+            try:
+                operator = ["+", "-", "/", "*"]
+                print (operator)
+                global operator_1
+                operator_1 = input ("choose the operator ")
+            except:
+                operator = ["+", "-", "/", "*"]
+                print (operator)
+                operator_1 = input ("choose the operator ")
+                #break
+                #num2 = int (input ("what is the second number? "))
+            while ValueError != False:
+                try:
+                    num2 = int (input ("what is the second number? "))
+                    result = calculator ()
+                    print (f"The result is:{result} ")
+                    con_discont = input ("Type 'y' to continue with the result above or terminate the calculation.")
+                    if con_discont != "y":
+                        print (f"The final result is {result}")
+                        return result
+
+                    while con_discont == "y":
+                        num1 = result
+                        print (operator)
+                        operator_1 = input ("choose the operator ")
+                        num2 = int (input ("What is the second number? "))
+                        result = calculator ()
+                        print (f"The result is:{result} ")
+                        con_discont = input ("Type 'y' to continue with the result above or terminate the calculation.")
+                        if con_discont != "y":
+                            print (f"The final result is {result}")
+                            return result
+                    break
+
+                except ValueError:
+                    print ("please enter valid number! ")
+        except ValueError:
+            print ("please enter valid number! ")
+
+
+
+operation()
